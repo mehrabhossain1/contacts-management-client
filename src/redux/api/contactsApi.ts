@@ -6,7 +6,7 @@ const contactsApi = baseApi.injectEndpoints({
       query: (data) => ({
         url: "/contacts",
         method: "POST",
-        data,
+        body: data,
       }),
       invalidatesTags: ["contacts"],
     }),
