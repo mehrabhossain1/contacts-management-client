@@ -5,6 +5,7 @@ const ContactCard = ({
   handleDelete,
 }: {
   contactsData: ContactData;
+  handleDelete: (id: string) => void;
 }) => {
   console.log(contactsData);
 

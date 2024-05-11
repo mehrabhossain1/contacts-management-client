@@ -7,6 +7,7 @@ const contactsApi = baseApi.injectEndpoints({
         url: "/contacts",
         method: "GET",
       }),
+      providesTags: ["contacts"],
     }),
 
     deleteContact: builder.mutation({
@@ -14,7 +15,7 @@ const contactsApi = baseApi.injectEndpoints({
         url: `/contacts/${id}`,
         method: "DELETE",
       }),
-      // invalidatesTags: [tagTypes.appointment],
+      invalidatesTags: ["contacts"],
     }),
   }),
 });

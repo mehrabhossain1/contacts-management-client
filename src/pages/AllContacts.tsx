@@ -26,6 +26,9 @@ const AllContacts = () => {
 
   return (
     <div>
+      {contactsData?.data?.length === 0 && (
+        <h1>There are no contacts. Please add contacts</h1>
+      )}
       <h1>All Contacts</h1>
       {isLoading ? (
         <LoadingSpinner />
