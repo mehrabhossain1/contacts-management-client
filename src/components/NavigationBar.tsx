@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Button from "./Button";
 
 const NavigationBar = () => {
   return (
@@ -33,11 +34,11 @@ const NavigationBar = () => {
             </li>
           </ul>
         </div>
-        <Link to="/" className="btn btn-ghost text-xl">
-          Contacts management
+        <Link to="/">
+          <Button>Contact Management</Button>
         </Link>
       </div>
-      <div className="navbar-center hidden lg:flex">
+      <div className="navbar-end hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
             <Link to="/add-contacts">Add Contacts</Link>

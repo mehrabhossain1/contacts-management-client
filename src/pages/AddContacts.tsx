@@ -1,5 +1,6 @@
 import { useForm, FieldValues } from "react-hook-form";
 import { useCreateContactMutation } from "../redux/api/contactsApi";
+import "./AddContacts.css";
 
 type Inputs = {
   name: string;
@@ -39,7 +40,10 @@ const AddContacts = () => {
   return (
     <>
       <h1>Add Contacts</h1>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="space-y-4 max-w-md mx-auto p-4 bg-white shadow-md rounded-md"
+      >
         <div>
           <label htmlFor="name" className="block">
             Name:
@@ -48,7 +52,7 @@ const AddContacts = () => {
             type="text"
             id="name"
             {...register("name", { required: true })}
-            className="border border-gray-300 rounded-md p-2 w-full"
+            className="input-field"
           />
           {errors.name && (
             <span className="text-red-500">Name is required</span>
@@ -62,7 +66,7 @@ const AddContacts = () => {
             type="email"
             id="email"
             {...register("email")}
-            className="border border-gray-300 rounded-md p-2 w-full"
+            className="input-field"
           />
         </div>
         <div>
@@ -73,7 +77,7 @@ const AddContacts = () => {
             type="tel"
             id="phoneNumber"
             {...register("phoneNumber", { required: true })}
-            className="border border-gray-300 rounded-md p-2 w-full"
+            className="input-field"
           />
           {errors.phoneNumber && (
             <span className="text-red-500">Phone number is required</span>
@@ -86,7 +90,7 @@ const AddContacts = () => {
           <textarea
             id="address"
             {...register("address", { required: true })}
-            className="border border-gray-300 rounded-md p-2 w-full"
+            className="input-field"
             rows={4}
           />
           {errors.address && (
@@ -101,12 +105,12 @@ const AddContacts = () => {
             type="text"
             id="profilePicture"
             {...register("profilePicture")}
-            className="border border-gray-300 rounded-md p-2 w-full"
+            className="input-field"
           />
         </div>
         <button
           type="submit"
-          className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
+          className="btn text-white border-none shadow-lg bg-[#FF5C35] hover:bg-[#E04826]"
         >
           Submit
         </button>

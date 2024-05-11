@@ -25,23 +25,22 @@ const AllContacts = () => {
   console.log(contactsData?.data);
 
   return (
-    <div className="min-h-screen bg-base-200">
+    <div className="min-h-screen">
       {contactsData?.data?.length === 0 && (
-        <h1>There are no contacts. Please add contacts</h1>
+        <h1 className="text-center mt-8 text-xl">
+          There are no contacts. Please add contacts
+        </h1>
       )}
-      <h1>All Contacts</h1>
       {isLoading ? (
         <LoadingSpinner />
       ) : (
-        contactsData?.data?.map((contact: ContactData) => (
-          <div>
-            <ContactCard
-              key={contact._id}
-              contactsData={contact}
-              handleDelete={handleDelete}
-            />
-          </div>
-        ))
+        <div className="flex flex-wrap justify-center">
+          {contactsData?.data?.map((contact: ContactData) => (
+            <div key={contact._id} className="mx-4 my-4 px-4 py-4">
+              <ContactCard contactsData={contact} handleDelete={handleDelete} />
+            </div>
+          ))}
+        </div>
       )}
     </div>
   );
