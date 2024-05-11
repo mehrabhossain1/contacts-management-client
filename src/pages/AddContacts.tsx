@@ -45,7 +45,9 @@ const AddContacts = () => {
 
   return (
     <>
-      <h1>Add Contacts</h1>
+      <h1 className="text-3xl font-bold text-[#7AB2B0] text-center mt-5">
+        Add New Contact
+      </h1>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="space-y-4 max-w-md mx-auto p-4 bg-white shadow-md rounded-md"
@@ -59,20 +61,22 @@ const AddContacts = () => {
             id="name"
             {...register("name", { required: true })}
             className="input-field"
+            placeholder="Enter name"
           />
           {errors.name && (
-            <span className="text-red-500">Name is required</span>
+            <span className="text-red-500">Please enter a name</span>
           )}
         </div>
         <div>
           <label htmlFor="email" className="block">
-            Email (optional):
+            Email:
           </label>
           <input
             type="email"
             id="email"
             {...register("email")}
             className="input-field"
+            placeholder="Enter email (optional)"
           />
         </div>
         <div>
@@ -90,6 +94,7 @@ const AddContacts = () => {
               },
             })}
             className="input-field"
+            placeholder="Enter phone number"
           />
           {errors.phoneNumber && (
             <span className="text-red-500">{errors.phoneNumber.message}</span>
@@ -104,27 +109,29 @@ const AddContacts = () => {
             {...register("address", { required: true })}
             className="input-field"
             rows={4}
+            placeholder="Enter address"
           />
           {errors.address && (
-            <span className="text-red-500">Address is required</span>
+            <span className="text-red-500">Please enter an address</span>
           )}
         </div>
         <div>
           <label htmlFor="profilePicture" className="block">
-            Profile picture (upload or URL):
+            Profile Picture URL:
           </label>
           <input
             type="text"
             id="profilePicture"
             {...register("profilePicture")}
             className="input-field"
+            placeholder="Paste profile picture URL"
           />
         </div>
         <button
           type="submit"
-          className="btn text-white border-none shadow-lg bg-[#FF5C35] hover:bg-[#E04826]"
+          className="btn text-white border-none shadow-lg bg-[#7AB2B0] hover:bg-[#586E8D]"
         >
-          Submit
+          Add Contact
         </button>
       </form>
     </>

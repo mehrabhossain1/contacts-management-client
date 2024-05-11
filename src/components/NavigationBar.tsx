@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
-import Button from "./Button";
 
 const NavigationBar = () => {
   return (
-    <div className="navbar bg-base-100 shadow-lg rounded-lg">
+    <div className="navbar bg-[#586E8D] shadow-lg rounded-lg text-white">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -24,7 +23,7 @@ const NavigationBar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-sm text-black dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
               <Link to="/add-contacts">Add Contacts</Link>
@@ -34,9 +33,7 @@ const NavigationBar = () => {
             </li>
           </ul>
         </div>
-        <Link to="/">
-          <Button>Contact Management</Button>
-        </Link>
+        <Link to="/">Contact Management</Link>
       </div>
       <div className="navbar-end hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
