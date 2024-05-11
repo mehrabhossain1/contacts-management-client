@@ -2,6 +2,7 @@ import { ContactData } from "../types/contacts.types";
 import { MdFavorite } from "react-icons/md";
 import { BiSolidEdit } from "react-icons/bi";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { useState } from "react";
 
 const ContactCard = ({
   contactsData,
@@ -11,6 +12,12 @@ const ContactCard = ({
   handleDelete: (id: string) => void;
 }) => {
   console.log(contactsData);
+
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const toggleFavorite = () => {
+    setIsFavorite(!isFavorite);
+  };
 
   return (
     <div className="flex flex-col lg:flex-row lg:items-center bg-white shadow-md rounded-md p-4 lg:p-4">
@@ -31,9 +38,12 @@ const ContactCard = ({
           <p className="mb-2">Address: {contactsData?.address}</p>
         </div>
         <div className="justify-end mt-4 lg:mt-0 w-full lg:w-auto">
-          <div className="tooltip" data-tip="Add to favorite">
-            <button>
-              <MdFavorite size={32} />
+          <div
+            className="tooltip"
+            data-tip={isFavorite ? "Remove from favorites" : "Add to favorites"}
+          >
+            <button onClick={toggleFavorite}>
+              <MdFavorite size={32} color={isFavorite ? "red" : "black"} />
             </button>
           </div>
 
