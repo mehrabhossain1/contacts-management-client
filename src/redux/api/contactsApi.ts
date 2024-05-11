@@ -26,6 +26,18 @@ const contactsApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["contacts"],
     }),
+
+    updateContact: builder.mutation({
+      query: (data) => {
+        console.log(data);
+        return {
+          url: `/contacts/${data._id}`,
+          method: "PATCH",
+          body: data,
+        };
+      },
+      invalidatesTags: ["contacts"],
+    }),
   }),
 });
 

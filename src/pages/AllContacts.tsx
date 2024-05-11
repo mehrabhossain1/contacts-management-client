@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { toast } from "sonner";
 import ContactCard from "../components/ContactCard";
 import LoadingSpinner from "../components/LoadingSpinner";
 import {
@@ -14,8 +15,8 @@ const AllContacts = () => {
   const handleDelete = async (id: string) => {
     try {
       const res = await deleteContact(id).unwrap();
-      if (res?.id) {
-        alert("Contact deleted successfully!!!");
+      if (res) {
+        toast.success("Contact deleted successfully!!!");
       }
     } catch (err: any) {
       console.error(err.message);

@@ -2,6 +2,7 @@ import { useForm, FieldValues } from "react-hook-form";
 import { useCreateContactMutation } from "../redux/api/contactsApi";
 import "./AddContacts.css";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 type Inputs = {
   name: string;
@@ -37,7 +38,7 @@ const AddContacts = () => {
 
     await createContact(contactInfo).unwrap();
 
-    alert("Contact created successfully!!!");
+    toast.success("Contact created successfully!!!");
 
     navigate("/all-contacts");
   };
