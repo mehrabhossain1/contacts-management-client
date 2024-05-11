@@ -4,7 +4,7 @@ import "./AddContacts.css";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
-type Inputs = {
+export type Inputs = {
   name: string;
   email: string;
   phoneNumber: string;
