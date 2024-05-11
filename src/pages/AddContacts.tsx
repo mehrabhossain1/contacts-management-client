@@ -1,6 +1,7 @@
 import { useForm, FieldValues } from "react-hook-form";
 import { useCreateContactMutation } from "../redux/api/contactsApi";
 import "./AddContacts.css";
+import { useNavigate } from "react-router-dom";
 
 type Inputs = {
   name: string;
@@ -21,6 +22,8 @@ const AddContacts = () => {
 
   const [createContact] = useCreateContactMutation();
 
+  const navigate = useNavigate();
+
   const onSubmit = async (data: FieldValues) => {
     console.log(data);
 
@@ -35,6 +38,8 @@ const AddContacts = () => {
     await createContact(contactInfo).unwrap();
 
     alert("Contact created successfully!!!");
+
+    navigate("/all-contacts");
   };
 
   return (
@@ -76,11 +81,17 @@ const AddContacts = () => {
           <input
             type="tel"
             id="phoneNumber"
-            {...register("phoneNumber", { required: true })}
+            {...register("phoneNumber", {
+              required: true,
+              minLength: {
+                value: 11,
+                message: "Phone number must be at least 11 characters long",
+              },
+            })}
             className="input-field"
           />
           {errors.phoneNumber && (
-            <span className="text-red-500">Phone number is required</span>
+            <span className="text-red-500">{errors.phoneNumber.message}</span>
           )}
         </div>
         <div>
