@@ -25,7 +25,7 @@ const AllContacts = () => {
   console.log(contactsData?.data);
 
   return (
-    <div>
+    <div className="min-h-screen bg-base-200">
       {contactsData?.data?.length === 0 && (
         <h1>There are no contacts. Please add contacts</h1>
       )}
