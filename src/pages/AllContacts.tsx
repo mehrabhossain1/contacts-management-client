@@ -8,7 +8,6 @@ import {
   useUpdateContactMutation,
 } from "../redux/api/contactsApi";
 import { ContactData } from "../types/contacts.types";
-import { FieldValues } from "react-hook-form";
 
 const AllContacts = () => {
   const { data: contactsData, isLoading } = useGetContactsQuery({});
@@ -26,15 +25,14 @@ const AllContacts = () => {
     }
   };
 
-  const handleUpdate = async (values: FieldValues) => {
+  const handleUpdateContact = async (id: string) => {
     try {
-      const res = await updateContact(values).unwrap();
-      console.log(res);
+      const res = await updateContact(id).unwrap();
       if (res) {
-        toast.success("Contact Updated Successfully!!!");
+        toast.success("Contact deleted successfully!!!");
       }
     } catch (err: any) {
-      console.error(err);
+      console.error(err.message);
     }
   };
 
@@ -56,7 +54,7 @@ const AllContacts = () => {
               <ContactCard
                 contactsData={contact}
                 handleDelete={handleDelete}
-                handleUpdate={handleUpdate}
+                handleUpdateContact={handleUpdateContact}
               />
             </div>
           ))}

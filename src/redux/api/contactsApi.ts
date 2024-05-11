@@ -31,9 +31,8 @@ const contactsApi = baseApi.injectEndpoints({
       query: (data) => {
         console.log(data);
         return {
-          url: `/contacts/${data._id}`,
+          url: `/contacts/${data}`,
           method: "PATCH",
-          body: data,
         };
       },
       invalidatesTags: ["contacts"],
