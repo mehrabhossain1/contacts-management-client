@@ -2,6 +2,15 @@ import { baseApi } from "./baseApi";
 
 const contactsApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
+    createContact: builder.mutation({
+      query: (data) => ({
+        url: "/contacts",
+        method: "POST",
+        data,
+      }),
+      invalidatesTags: ["contacts"],
+    }),
+
     getContacts: builder.query({
       query: () => ({
         url: "/contacts",
@@ -20,4 +29,8 @@ const contactsApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useGetContactsQuery, useDeleteContactMutation } = contactsApi;
+export const {
+  useCreateContactMutation,
+  useGetContactsQuery,
+  useDeleteContactMutation,
+} = contactsApi;
