@@ -2,13 +2,21 @@ import { baseApi } from "./baseApi";
 
 const contactsApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    contacts: builder.query({
+    getContacts: builder.query({
       query: () => ({
         url: "/contacts",
         method: "GET",
       }),
     }),
+
+    deleteContact: builder.mutation({
+      query: (id) => ({
+        url: `/contacts/${id}`,
+        method: "DELETE",
+      }),
+      // invalidatesTags: [tagTypes.appointment],
+    }),
   }),
 });
 
-export const { useContactsQuery } = contactsApi;
+export const { useGetContactsQuery, useDeleteContactMutation } = contactsApi;

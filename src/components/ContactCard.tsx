@@ -1,6 +1,11 @@
 import { ContactData } from "../types/contacts.types";
 
-const ContactCard = ({ contactsData }: { contactsData: ContactData }) => {
+const ContactCard = ({
+  contactsData,
+  handleDelete,
+}: {
+  contactsData: ContactData;
+}) => {
   console.log(contactsData);
 
   return (
@@ -19,7 +24,12 @@ const ContactCard = ({ contactsData }: { contactsData: ContactData }) => {
         <p>Address: {contactsData?.address}</p>
         <div className="card-actions justify-end">
           <button className="btn btn-primary">Edit</button>
-          <button className="btn btn-primary">Delete</button>
+          <button
+            onClick={() => handleDelete(contactsData._id)}
+            className="btn btn-primary"
+          >
+            Delete
+          </button>
         </div>
       </div>
     </div>

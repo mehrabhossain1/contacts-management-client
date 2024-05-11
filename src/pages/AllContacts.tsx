@@ -1,10 +1,26 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import ContactCard from "../components/ContactCard";
 import LoadingSpinner from "../components/LoadingSpinner";
-import { useContactsQuery } from "../redux/api/contactsApi";
+import {
+  useDeleteContactMutation,
+  useGetContactsQuery,
+} from "../redux/api/contactsApi";
 import { ContactData } from "../types/contacts.types";
 
 const AllContacts = () => {
-  const { data: contactsData, isLoading } = useContactsQuery({});
+  const { data: contactsData, isLoading } = useGetContactsQuery({});
+  const [deleteContact] = useDeleteContactMutation();
+
+  const handleDelete = async (id: string) => {
+    try {
+      const res = await deleteContact(id).unwrap();
+      if (res?.id) {
+        alert("Contact deleted successfully!!!");
+      }
+    } catch (err: any) {
+      console.error(err.message);
+    }
+  };
 
   console.log(contactsData?.data);
 
@@ -16,7 +32,11 @@ const AllContacts = () => {
       ) : (
         contactsData?.data?.map((contact: ContactData) => (
           <div>
-            <ContactCard key={contact._id} contactsData={contact} />
+            <ContactCard
+              key={contact._id}
+              contactsData={contact}
+              handleDelete={handleDelete}
+            />
           </div>
         ))
       )}
