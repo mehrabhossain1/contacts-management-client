@@ -5,37 +5,31 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { useState } from "react";
 import { Inputs } from "../pages/AddContacts";
 import { FieldValues, useForm } from "react-hook-form";
-import { toast } from "sonner";
 
 const ContactCard = ({
   contactsData,
   handleDelete,
-  handleUpdateContact,
 }: {
   contactsData: ContactData;
   handleDelete: (id: string) => void;
-  handleUpdateContact: (id: string, contactData: ContactData) => Promise<void>;
 }) => {
   console.log(contactsData);
   const { register, handleSubmit } = useForm<Inputs>();
 
   const [isFavorite, setIsFavorite] = useState(false);
 
+  const [editingContactId, setEditingContactId] = useState<string | null>(null);
+
+  const toggleModal = (id: string) => {
+    console.log("Editing contact ID:", id); // Check if the ID is correct
+    setEditingContactId(id);
+    const modal = document.getElementById("my_modal_1") as HTMLDialogElement;
+    modal.showModal();
+  };
+
   const onSubmit = async (data: FieldValues) => {
-    console.log(data);
-
-    const contactInfo = {
-      _id: contactsData?._id,
-      name: data.name,
-      email: data.email,
-      phoneNumber: data.phoneNumber,
-      address: data.address,
-      profilePicture: data.profilePicture,
-    };
-
-    await handleUpdateContact(contactInfo._id, contactInfo);
-
-    toast.success("Contact updated successfully!!!");
+    console.log("Editing contact ID:", editingContactId); // Check if the ID is accessible
+    console.log("Form data:", data);
   };
 
   const toggleFavorite = () => {
@@ -72,13 +66,8 @@ const ContactCard = ({
 
           {/* Edit btn */}
           <div className="tooltip" data-tip="Edit contact">
-            <button
-              onClick={() =>
-                (
-                  document.getElementById("my_modal_1") as HTMLDialogElement
-                ).showModal()
-              }
-            >
+            <button onClick={() => toggleModal(contactsData._id)}>
+              {/* Pass contact ID to toggleModal */}
               <BiSolidEdit size={32} />
             </button>
           </div>
@@ -125,7 +114,7 @@ const ContactCard = ({
                   id="email"
                   {...register("email")}
                   className="input-field"
-                  placeholder="Enter email (optional)"
+                  placeholder="Enter email"
                 />
               </div>
               <div>

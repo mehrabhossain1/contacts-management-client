@@ -5,29 +5,16 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import {
   useDeleteContactMutation,
   useGetContactsQuery,
-  useUpdateContactMutation,
 } from "../redux/api/contactsApi";
 import { ContactData } from "../types/contacts.types";
 
 const AllContacts = () => {
   const { data: contactsData, isLoading } = useGetContactsQuery({});
   const [deleteContact] = useDeleteContactMutation();
-  const [updateContact] = useUpdateContactMutation();
 
   const handleDelete = async (id: string) => {
     try {
       const res = await deleteContact(id).unwrap();
-      if (res) {
-        toast.success("Contact deleted successfully!!!");
-      }
-    } catch (err: any) {
-      console.error(err.message);
-    }
-  };
-
-  const handleUpdateContact = async (id: string) => {
-    try {
-      const res = await updateContact(id).unwrap();
       if (res) {
         toast.success("Contact deleted successfully!!!");
       }
@@ -51,11 +38,7 @@ const AllContacts = () => {
         <div className="flex flex-wrap justify-center">
           {contactsData?.data?.map((contact: ContactData) => (
             <div key={contact._id} className="mx-4 my-4 px-4 py-4">
-              <ContactCard
-                contactsData={contact}
-                handleDelete={handleDelete}
-                handleUpdateContact={handleUpdateContact}
-              />
+              <ContactCard contactsData={contact} handleDelete={handleDelete} />
             </div>
           ))}
         </div>
